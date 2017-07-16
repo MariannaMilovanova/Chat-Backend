@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id='users-creating'>
+        <input type="text" id='user-id-input' placeholder = 'id'/>
+        <input type="text" id='user-name' placeholder = 'name'/>
+        <input type="text" id='user-email' placeholder = 'email'/>
+        <button id='create-user'>Create A User</button> 
+    </div>
+    <div class = "user">
+        <button id='get-users'>Get All Users</button>
+        <input type="text" id='user-id'/>
+        <button id='get-user'>Get A User</button>
+        <button id='get-interaction'>Get All Users who speak with this one user</button>
+        <button id='delete-user'>Delete A User</button>
+    </div>
+    <div class = "message">
+        <button id='get-messages'>Get All Messages</button>
+        <input type="text" id='message-id'/>
+        <button id='get-message'>Get A message</button>  
+        <button id='message-delete'>Delete A message</button>
+    </div>
+    <div id='users-container'> </div>
+    <div id='message-container'> </div>
+    <script src='./index.js'></script>
+    <script src='./mess.js'></script>
+</body>
+</html>
