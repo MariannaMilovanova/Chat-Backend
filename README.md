@@ -10,7 +10,7 @@ POST api/user/ http://localhost:1428/api/user/   - create new user with data pro
 
 PUT  api/user/:id  http://localhost:1428/api/user/2 - update one particular user with id = 2, new data are in request body
 
-GET api/user/query/:id http://localhost:1428/api/user/query/2 - find all users with whom speak user with id == 2
+GET api/user/query/:id http://localhost:1428/api/user/query/2 - returns all users with whom the user with id ==2 has spoken
 
 
 GET api/message  http://localhost:1428/api/message/  - get all messages
