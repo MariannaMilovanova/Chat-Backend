@@ -6,15 +6,12 @@ var elements = {
 	usersContainer: document.querySelector('#users-container'),
 	getInteraction: document.querySelector('#get-interaction'),
 	createUserButton: document.querySelector('#create-user'),
-	userId: document.querySelector('#user-id-input'),
 	userName: document.querySelector('#user-name'),
 	userEmail: document.querySelector('#user-email'),
-
 	getMessages: document.querySelector('#get-messages')
 };
 
-//console.log(elements.usersContainer);
-
+let userId = 4;
 (function(){
 	bindListeners();
 })();
@@ -22,12 +19,6 @@ var elements = {
 var currentUsers = [];
 
 function bindListeners(){
-	// elements.getInteraction.addEventListener('click', function(event){
-	// 	getConnection(null, messages, function(err, users){
-	// 		renderUsers(users);
-	// 	});
-	// });
-
 	elements.getUsersButton.addEventListener('click', function(event){
 		getUsers(null, function(err, users){
 			renderUsers(users);
@@ -58,9 +49,8 @@ function bindListeners(){
 	elements.createUserButton.addEventListener('click', function(event){
 		var userNameInp = String(elements.userName.value);
 		var userEmailInp = String(elements.userEmail.value);
-		var userIdInp = String(elements.userId.value);
 		let newUser = {
-			id: userIdInp,
+			id: ++userId,
 			name: `${userNameInp}`,
 			email: `${userEmailInp}`
 		}
@@ -151,7 +141,6 @@ function addUser(newUser, callback){
 	var xhr = new XMLHttpRequest(),
     	method = "POST";
     	url = "/api/user";
-    	//xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.open(method, url, true);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.onreadystatechange = function () {
@@ -163,7 +152,6 @@ function addUser(newUser, callback){
 	
 
 	function reqListener() {
-		//console.log(newUser);
 		callback("sdsd");
 	}
 }

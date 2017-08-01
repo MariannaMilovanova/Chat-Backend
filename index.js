@@ -13,3 +13,5 @@ app.use(bodyParser.urlencoded({extended: true}));
 const routes = require('./routes/api/routes')(app);
 	
 const server = app.listen(1428);
+
+console.log(`listening on port*: 1428`);
