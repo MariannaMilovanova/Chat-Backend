@@ -56,4 +56,17 @@ router.put('/:id', (req, res, next) => {
     
 });
 
+//
+router.get('/query/:senderId', (req, res, next) => {
+    messService.findUserSpeak(Number(req.params.senderId), (err, data) => {
+        if (!err){
+            res.data = data;
+            res.json(res.data);
+        } else {
+            res.status(400);
+            res.end();
+        }
+    });
+});
+
 module.exports = router;

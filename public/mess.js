@@ -56,17 +56,17 @@ function renderMessages(messages){
         mesContainer.className = 'message-container';
 
         var senderId = document.createElement('div');
-        senderId.innerText = message.senderId;
+        senderId.innerText = `Sender id: ${message.senderId}`;
         senderId.className = 'sender-id';
         mesContainer.appendChild(senderId);
 
         var receiverId = document.createElement('div');
-        receiverId.innerText = message.receiverId;
+        receiverId.innerText = `Receiver id: ${message.receiverId}`;
         receiverId.className = 'receiver-id';
         mesContainer.appendChild(receiverId);
 
         var messageText = document.createElement('div');
-        messageText.innerText = message.message;
+        messageText.innerText = `Massage content: ${message.message}`;
         mesContainer.appendChild(messageText);
 
         elem.messContainer.appendChild(mesContainer);

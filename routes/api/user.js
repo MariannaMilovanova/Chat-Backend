@@ -43,7 +43,7 @@ router.delete('/:id', (req, res, next) => {
 	});
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id/', (req, res, next) => {
 	const obj = req.body;
 	userService.findOneAndUpdate(Number(req.params.id), obj, (err, data) => {
 		if (!err){
@@ -54,6 +54,18 @@ router.put('/:id', (req, res, next) => {
 		}
 	});
 	
+});
+
+router.get('/query/:id', (req, res, next) => {
+	userService.findUserSpeak(Number(req.params.id), (err, data) => {
+		if (!err){
+			res.data = data;
+			res.json(res.data);
+		} else {
+			res.status(400);
+			res.end();
+		}
+	});
 });
 
 module.exports = router;

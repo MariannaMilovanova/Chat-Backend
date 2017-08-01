@@ -1,22 +1,22 @@
 const messages = [{
     id: 1,
-    senderId: "2",
-    receiverId: "1",
+    senderId: 2,
+    receiverId: 1,
     message: "Love of those who are in search of light...."
 },{
     id: 2,
-    senderId: "3",
-    receiverId: "4",
+    senderId: 3,
+    receiverId: 4,
     message: "Will you stay in it?"
 },{
     id: 3,
-    senderId: "4",
-    receiverId: "1",
+    senderId: 4,
+    receiverId: 1,
     message: "I don't need it."
 },{
     id: 4,
-    senderId: "4",
-    receiverId: "2",
+    senderId: 4,
+    receiverId: 2,
     message: " know what prevents --- my ego."
 }];
 
@@ -39,6 +39,8 @@ function findMessage(id){
 }
 
 module.exports = {
+    messages: messages,
+
     findAll: (callback) => {
         callback(null, messages);
     },
@@ -71,5 +73,11 @@ module.exports = {
         const {err, index} = findMessage(id);
         messages[index] = Object.assign(messages[index], message);
         callback(err);
-    }
+    },
+
+    // findUserSpeak: (senderId, callback) => {
+    //     const {err, index} = findMessage(senderId);
+    //     messages[index] = Object.assign(messages[index], message);
+    //     callback(err);
+    // }
 };

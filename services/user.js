@@ -1,3 +1,5 @@
+const messages = require ('./message');
+
 const users = [{
 	id: 1,
 	name: 'Nikolas',
@@ -67,5 +69,19 @@ module.exports = {
 		const {err, index} = findUser(id);
 		users[index] = Object.assign(users[index], user);
 		callback(err);
-	}
+	},
+	findUserSpeak: (id, callback) => {
+		const {err, index} = findUser(id);
+    	let matchUsers = [];
+    	for ( let i = 0, k = 0; i < messages.messages.length; i++ ) {
+    		if (users[index].id == messages.messages[i].senderId)  {
+    			matchUsers[k] = messages.messages[i].receiverId;
+    			k += 1;
+    		} else if (users[index].id == messages.messages[i].receiverId) {
+    			matchUsers[k] = messages.messages[i].senderId;
+    			k += 1;
+    		}
+    	}
+    	callback(err, matchUsers);
+    }
 };

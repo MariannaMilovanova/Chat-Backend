@@ -16,6 +16,9 @@ input#user-id {
 .message button {
     padding:3px;
 }
+.receiver-id, .sender-id {
+    font-style: italic;
+}
 #users-container {
     margin-bottom: 20px;
     margin-top: 20px;
