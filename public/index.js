@@ -4,11 +4,13 @@ var elements = {
 	getUsersButton: document.querySelector('#get-users'),
 	userIdInput: document.querySelector('#user-id'),
 	usersContainer: document.querySelector('#users-container'),
-	getInteraction: document.querySelector('#get-interaction'),
+	getInteractionBtn: document.querySelector('#get-interaction'),
 	createUserButton: document.querySelector('#create-user'),
 	userName: document.querySelector('#user-name'),
 	userEmail: document.querySelector('#user-email'),
-	getMessages: document.querySelector('#get-messages')
+	getMessages: document.querySelector('#get-messages'),
+	someText: document.querySelector('#some-text')
+
 };
 
 let userId = 4;
@@ -21,6 +23,7 @@ var currentUsers = [];
 function bindListeners(){
 	elements.getUsersButton.addEventListener('click', function(event){
 		getUsers(null, function(err, users){
+			console.log(users);
 			renderUsers(users);
 		});
 	});
@@ -30,6 +33,7 @@ function bindListeners(){
 		var userId = Number(elements.userIdInput.value);
 		if (!isNaN(userId)){
 			getUsers(userId, function(err, users){
+				console.log(users);
 				renderUsers(users);
 			});
 		}
@@ -65,6 +69,18 @@ function bindListeners(){
 			elements.usersContainer.innerHTML = "Please enter BOTH user name and user email!";
 		}
 	});	
+
+	elements.getInteractionBtn.addEventListener('click', function(event){
+		var userId = Number(elements.userIdInput.value);
+		elements.someText.innerHTML = `User with id #${userId} speaks with this guys:`;
+		if (!isNaN(userId)){
+			getInteractionFunc(userId, function(err, users){
+				renderUsers(users[0]);
+				
+			});
+		}
+
+	})
 }
 
 function renderUsers(users){
@@ -135,6 +151,32 @@ function getUsers(id, callback){
 }
 
 
+function getInteractionFunc(id, callback){
+	var idString = '';
+	var isOneUser = false;
+	if (id !== null){
+		idString = '/' + id;
+		isOneUser = true;
+	}
+	var connection = new XMLHttpRequest();
+	connection.addEventListener('load', reqListener);
+	connection.open('GET', '/api/user/query' + idString);
+	connection.send();
+
+	function reqListener(event){
+		try {
+			var resp = JSON.parse(this.responseText);
+			if (isOneUser){
+				resp = [resp];
+			} else {
+				currentUsers = resp;
+			}
+		} catch(e){
+			return callback(new Error('error parsing response'));
+		}
+		callback(null, resp);
+	}
+}
 
 function addUser(newUser, callback){
  	var NewNewUser = JSON.stringify(newUser);

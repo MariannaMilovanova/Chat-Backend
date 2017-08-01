@@ -72,14 +72,25 @@ module.exports = {
 	},
 	findUserSpeak: (id, callback) => {
 		const {err, index} = findUser(id);
+    	let matchUsersId = [];
     	let matchUsers = [];
+    	let j = 0;
     	for ( let i = 0, k = 0; i < messages.messages.length; i++ ) {
     		if (users[index].id == messages.messages[i].senderId)  {
-    			matchUsers[k] = messages.messages[i].receiverId;
+    			matchUsersId[k] = messages.messages[i].receiverId;
     			k += 1;
     		} else if (users[index].id == messages.messages[i].receiverId) {
-    			matchUsers[k] = messages.messages[i].senderId;
+    			matchUsersId[k] = messages.messages[i].senderId;
     			k += 1;
+    		}
+    	}
+    	for (let id in matchUsersId) {
+    		for (let user in users) {
+    			if (users[user].id == matchUsersId[id]) {
+    				matchUsers[j] = users[user];
+    				j += 1;
+    			}
+
     		}
     	}
     	callback(err, matchUsers);
