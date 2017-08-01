@@ -1,3 +1,7 @@
+npm i
+
+npm start
+
 GET api/user  http://localhost:1428/api/user - get all users
 
 GET api/user/:id  http://localhost:1428/api/user/2 - get one particular user with id = 2
